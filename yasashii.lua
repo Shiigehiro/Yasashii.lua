@@ -1,14 +1,20 @@
 local discordia = require('discordia')
-local client = discordia.Client()
+local general = require('./commands/')
+local prefix = "."
+
+_G.client = discordia.Client()
 
 client:on('ready', function()
-  --console.log(`${bot.users.size} users, in ${bot.channels.size} channels of ${bot.guilds.size} servers`);
   print(clien.userCount.." users, in "..client.channelCount.." channels of "..client.guildCount.."servers")
 end)
 
-client:on('messageCreate', function(message)
-  if message.content == '!ping' then
-    message.channel:sendMessage('!pong')
+client:on('messageCreate', function(msg)
+  if (msg.author.bot == true) then return true end
+  if (msg.channel.isPrivate == true) then return true end
+    
+  if (string.find(msg.content, ".", 1, 1)) then
+    local cmd = string.sub(string.match(msg.content, '(%S+) (.*)'), string.len(prefix)+1)
+		local args = string.sub(msg.content, string.len(cmd)+2))
   end
 end)
 

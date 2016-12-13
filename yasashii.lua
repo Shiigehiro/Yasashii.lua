@@ -2,7 +2,8 @@ local discordia = require('discordia')
 local client = discordia.Client()
 
 client:on('ready', function()
-  print('Logged in as '.. client.user.username)
+  --console.log(`${bot.users.size} users, in ${bot.channels.size} channels of ${bot.guilds.size} servers`);
+  print(clien.userCount.." users, in "..client.channelCount.." channels of "..client.guildCount.."servers")
 end)
 
 client:on('messageCreate', function(message)

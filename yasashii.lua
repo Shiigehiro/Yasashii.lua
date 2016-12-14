@@ -1,3 +1,4 @@
+
 local discordia = require('discordia')
 local general = require('./commands/')
 local prefix = "."
@@ -15,6 +16,11 @@ client:on('messageCreate', function(msg)
   if (string.find(msg.content, ".", 1, 1)) then 
     local cmd = string.sub(string.match(msg.content, '(%S+) (.*)'), string.len(prefix)+1)
     local args = string.sub(msg.content, string.len(cmd)+2))
+    local cmds = read_file("./commands/"..cmd..".lua")
+    if cmds ~= "" and cmds ~= nil then
+      print( "X must be equal to 1 or 0" )
+      return  
+    end
   end
 end)
 

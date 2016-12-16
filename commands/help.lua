@@ -1,7 +1,7 @@
-local cmd = {}
+local help =  {}
 
-function cmd.run(msg)
-  print('SOS');
+function help.run(m,a)
+   print("Your message : "..a)
 end
 
-return cmd
+return help

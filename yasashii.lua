@@ -16,7 +16,7 @@ end
 
 -- Discordia Event : Ready --
 client:on('ready', function()
-  print(client.userCount.." users, in "..client.channelCount.." channels of "..client.guildCount.."servers")
+  print(client.userCount.." users, in "..client.channelCount.." channels of "..client.guildCount.." servers")
 end)
 
 -- Discordia Event : MessageCreate --

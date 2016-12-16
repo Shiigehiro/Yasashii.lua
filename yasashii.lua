@@ -1,4 +1,4 @@
--- Modules -- 
+-- Modules --
 local discordia = require('discordia')
 local prefix = "."
 
@@ -23,14 +23,16 @@ end)
 client:on('messageCreate', function(msg)
   if (msg.author.bot == true) then return true end
   if (msg.channel.isPrivate == true) then return true end
-    
-  if (string.find(msg.content, ".", 1, 1)) then 
-    local cmd = string.sub(string.match(msg.content, '(%S+) (.*)'), string.len(prefix)+1)
-    local args = string.sub(msg.content, string.len(cmd)+2)
-    local cmds = read_file("./commands/"..cmd..".lua")
-    if cmds ~= "" and cmds ~= nil then
-      print('Work !')
-      return  
+
+  if (string.find(msg.content, ".", 1, 1)) then
+    local _cmd = string.sub(string.match(msg.content, '(%S+) (.*)'), string.len(prefix)+1)
+    local args = string.sub(msg.content, string.len(_cmd)+3)
+    local _cmds = read_file("./commands/".._cmd..".lua")
+    if _cmds ~= "" and _cmds ~= nil then
+      local line = "./commands/".._cmd..""
+      local cmd = require (line)
+        cmd.run(msg,args)
+      return
     end
   end
 end)

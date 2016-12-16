@@ -1,6 +1,5 @@
 -- Modules -- 
 local discordia = require('discordia')
-local general = require('./commands/')
 local prefix = "."
 
 -- Global vars --
@@ -17,7 +16,7 @@ end
 
 -- Discordia Event : Ready --
 client:on('ready', function()
-  print(clien.userCount.." users, in "..client.channelCount.." channels of "..client.guildCount.."servers")
+  print(client.userCount.." users, in "..client.channelCount.." channels of "..client.guildCount.."servers")
 end)
 
 -- Discordia Event : MessageCreate --
@@ -27,10 +26,10 @@ client:on('messageCreate', function(msg)
     
   if (string.find(msg.content, ".", 1, 1)) then 
     local cmd = string.sub(string.match(msg.content, '(%S+) (.*)'), string.len(prefix)+1)
-    local args = string.sub(msg.content, string.len(cmd)+2))
+    local args = string.sub(msg.content, string.len(cmd)+2)
     local cmds = read_file("./commands/"..cmd..".lua")
     if cmds ~= "" and cmds ~= nil then
-      print('Work !)
+      print('Work !')
       return  
     end
   end
